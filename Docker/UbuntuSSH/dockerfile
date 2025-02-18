@@ -1,0 +1,59 @@
+# -------------------------------------------------------------------
+# Dockerfile for UbuntuSSH Setup
+# -------------------------------------------------------------------
+# This file creates a Docker image with:
+# - Ubuntu as the base image
+# - OpenSSH server enabled for remote SSH access
+# - Nano editor preinstalled
+# - Ports exposed for SSH access
+#
+# Things you might want to change before running:
+# 1. Replace 'root:root' in the password setup command with your own password.
+# 2. Uncomment optional commands to install additional tools or features.
+#
+# Basic Commands: 
+# - Only essential commands are enabled by default for a minimal setup.
+# - Optional features are commented out; you can uncomment them if needed.
+# -------------------------------------------------------------------
+
+# Use Ubuntu as the base image
+FROM ubuntu:latest
+
+# Add metadata about the image
+LABEL maintainer="your_email@example.com"
+
+# Update the package list and install essential packages
+# - 'apt-get update': Updates the list of available packages.
+# - 'apt-get upgrade': Upgrades all installed packages to the latest version.
+# - 'openssh-server': SSH server for remote access.
+# - 'nano': A simple text editor for quick edits in the container.
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y openssh-server nano && \
+    mkdir /var/run/sshd
+
+# Set up SSH:
+# - Set the root password to 'root' (change 'root:root' to your desired password).
+# - Enable root login by modifying the SSH configuration.
+# - Enable password-based authentication.
+RUN echo 'root:root' | chpasswd && \
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+# OPTIONAL: Add a non-root user for better security
+# Uncomment the following lines to create a new user with sudo access.
+# Replace 'newuser' and 'newpassword' with your desired username and password.
+# RUN useradd -ms /bin/bash newuser && echo 'newuser:newpassword' | chpasswd && \
+#     usermod -aG sudo newuser
+
+# OPTIONAL: Install additional utilities (uncomment as needed)
+# RUN apt-get install -y curl git vim htop
+
+# Ensure the root user's SSH directory exists with proper permissions
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+
+# Expose port 22 for SSH access
+# - This port can be remapped in docker-compose.yml.
+EXPOSE 22
+
+# Start the SSH server in the foreground (required for the container to stay running)
+CMD ["/usr/sbin/sshd", "-D"]

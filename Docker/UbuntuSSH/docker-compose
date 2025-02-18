@@ -1,0 +1,41 @@
+# -------------------------------------------------------------------
+# Docker Compose File for UbuntuSSH Setup
+# -------------------------------------------------------------------
+# This file defines a containerized service with:
+# - A custom container name
+# - SSH access enabled by mapping host port 2222 to container port 22
+# - Options for persistent storage and additional configurations
+#
+# Things you might want to change before running:
+# 1. Replace '2222:22' with your desired host-to-container port mapping.
+# 2. Uncomment the 'volumes' section if you want to map local directories.
+# -------------------------------------------------------------------
+
+version: "3.8"
+
+services:
+  ubuntu_ssh:
+    # Build the Docker image using the Dockerfile in the current directory.
+    build: .
+
+    # Assign a custom name to the container.
+    container_name: ubuntu_ssh_container
+
+    # Map ports:
+    # - Host port '2222' maps to container port '22'.
+    # - Change '2222' to a different port if needed (e.g., '2022:22').
+    ports:
+      - "2222:22"
+
+    # Automatically restart the container if it stops or the host reboots.
+    restart: always
+
+    # Enable an interactive terminal for debugging (optional).
+    tty: true
+
+    # OPTIONAL: Mount a local directory to the container for persistent storage.
+    # Uncomment the 'volumes' section below and replace:
+    # - './host_directory' with the path to your local directory.
+    # - '/container_directory' with the path inside the container.
+    # volumes:
+    #   - ./host_directory:/container_directory

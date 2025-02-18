@@ -1,0 +1,154 @@
+# Docker Commands Reference
+# This file contains categorized Docker commands from basic to advanced.
+# Use this file as a quick reference and guide to working with Docker.
+# Each command is explained with common options and examples.
+# You can copy and paste commands as needed!
+
+==================================================
+1. CONTAINER COMMANDS
+==================================================
+
+# docker run
+# Used to create and start a new container.
+# Common options:
+#   -it    → Interactive mode with terminal access.
+#   -d     → Run the container in detached mode (background).
+#   --name → Assign a custom name to the container.
+#   -p     → Map host and container ports (e.g., -p 8080:80).
+#   -v     → Mount a volume (e.g., -v /host/path:/container/path).
+docker run -it -p 8080:80 ubuntu:latest
+
+# docker ps
+# List running containers.
+# Common options:
+#   -a → List all containers (running and stopped).
+#   -q → Display only container IDs.
+docker ps -a
+
+# docker stop
+# Stop a running container.
+docker stop <container_name_or_id>
+
+# docker rm
+# Remove a stopped container.
+# Common options:
+#   -f → Force remove a running container.
+docker rm <container_name_or_id>
+
+# docker exec
+# Run a command inside a running container.
+# Common options:
+#   -it → Interactive mode with terminal access.
+docker exec -it <container_name_or_id> bash
+
+# docker logs
+# View the logs of a container.
+# Common options:
+#   -f → Follow logs in real-time.
+docker logs -f <container_name_or_id>
+
+==================================================
+2. IMAGE COMMANDS
+==================================================
+
+# docker pull
+# Download an image from Docker Hub or a registry.
+docker pull ubuntu:latest
+
+# docker images
+# List all downloaded images.
+# Common options:
+#   -q → Display only image IDs.
+docker images
+
+# docker rmi
+# Remove an image.
+# Common options:
+#   -f → Force remove an image even if it's in use.
+docker rmi ubuntu:latest
+
+# docker build
+# Build an image from a Dockerfile.
+# Common options:
+#   -t → Tag the image with a name (e.g., my-image:v1).
+docker build -t my-image:v1 .
+
+==================================================
+3. NETWORK COMMANDS
+==================================================
+
+# docker network ls
+# List all Docker networks.
+docker network ls
+
+# docker network create
+# Create a new network.
+# Common options:
+#   --driver → Specify the network type (e.g., bridge, host).
+docker network create my-network
+
+# docker network connect
+# Connect a container to a network.
+docker network connect my-network <container_name_or_id>
+
+# docker network inspect
+# View details of a specific network.
+docker network inspect my-network
+
+==================================================
+4. VOLUME COMMANDS
+==================================================
+
+# docker volume ls
+# List all volumes.
+docker volume ls
+
+# docker volume create
+# Create a new volume.
+docker volume create my-volume
+
+# docker volume inspect
+# View details of a volume.
+docker volume inspect my-volume
+
+# docker volume rm
+# Remove a volume.
+docker volume rm my-volume
+
+==================================================
+5. UTILITY COMMANDS
+==================================================
+
+# docker stats
+# View real-time resource usage of running containers.
+docker stats
+
+# docker inspect
+# View low-level details of a container or image.
+docker inspect <container_or_image_name>
+
+# docker system prune
+# Clean up unused Docker resources (containers, images, networks, volumes).
+# Common options:
+#   -a → Remove all unused resources (including dangling images).
+docker system prune -a
+
+==================================================
+6. DOCKER COMPOSE COMMANDS
+==================================================
+
+# docker-compose up
+# Build and start containers defined in docker-compose.yml.
+# Common options:
+#   -d → Run containers in detached mode.
+docker-compose up -d
+
+# docker-compose down
+# Stop and remove all containers defined in docker-compose.yml.
+docker-compose down
+
+# docker-compose logs
+# View logs of all containers in the compose setup.
+# Common options:
+#   -f → Follow logs in real-time.
+docker-compose logs -f
