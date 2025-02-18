@@ -1,0 +1,282 @@
+# Ubuntu Basic Commands Reference
+# This file contains categorized Ubuntu commands from basic to advanced.
+# Use this file as a quick reference for commonly used Linux commands.
+# Each command is explained with common options and examples.
+# You can copy and paste commands as needed!
+
+==================================================
+1. FILE MANAGEMENT
+==================================================
+
+# ls
+# List files and directories.
+# Common options:
+#   -l → List in long format (detailed info).
+#   -a → Show hidden files.
+#   -h → Show file sizes in human-readable format.
+ls -l
+
+# touch
+# Create an empty file.
+touch myfile.txt
+
+# cat
+# Display the content of a file.
+cat myfile.txt
+
+# cp
+# Copy files or directories.
+# Common options:
+#   -r → Copy directories recursively.
+cp source.txt destination.txt
+
+# mv
+# Move or rename a file.
+mv oldname.txt newname.txt
+
+# rm
+# Remove files or directories.
+# Common options:
+#   -r → Remove directories recursively.
+#   -f → Force remove without confirmation.
+rm myfile.txt
+
+# file
+# Determine the type of a file.
+file myfile.txt
+
+==================================================
+2. DIRECTORY NAVIGATION
+==================================================
+
+# pwd
+# Print the current working directory.
+pwd
+
+# cd
+# Change the directory.
+# Example: Go to the "Documents" directory.
+cd Documents
+
+# cd ..
+# Move one directory level up (back).
+cd ..
+
+# cd /
+# Move to the root directory.
+cd /
+
+# cd ~
+# Move to the home directory of the current user.
+cd ~
+
+# mkdir
+# Create a new directory.
+mkdir mydirectory
+
+# rmdir
+# Remove an empty directory.
+rmdir mydirectory
+
+# tree
+# Display the directory structure in a tree-like format.
+# Install it using: sudo apt install tree
+tree
+
+==================================================
+3. USER MANAGEMENT
+==================================================
+
+# whoami
+# Display the currently logged-in user.
+whoami
+
+# who
+# Show logged-in users and their sessions.
+who
+
+# adduser
+# Add a new user.
+sudo adduser username
+
+# deluser
+# Delete a user.
+sudo deluser username
+
+==================================================
+4. PERMISSIONS
+==================================================
+
+# chmod
+# Change file permissions.
+# Example: Make a file executable.
+chmod +x myscript.sh
+
+# chown
+# Change ownership of a file or directory.
+# Example: Assign ownership to a user.
+sudo chown username myfile.txt
+
+# groups
+# List the groups of the current user.
+groups
+
+==================================================
+5. NETWORKING
+==================================================
+
+# ifconfig
+# Display network configuration (deprecated in newer versions, use `ip` instead).
+ifconfig
+
+# ip
+# Display or manipulate network interfaces.
+# Example: Show all IP addresses.
+ip addr show
+
+# ping
+# Test connectivity to a host.
+# Example: Ping Google DNS.
+ping 8.8.8.8
+
+# curl
+# Transfer data from a URL.
+# Example: Fetch the HTML of a website.
+curl http://example.com
+
+==================================================
+6. SYSTEM INFORMATION
+==================================================
+
+# uname
+# Show system information.
+# Common options:
+#   -r → Show the kernel version.
+uname -r
+
+# hostname
+# Show or set the system's hostname.
+hostname
+
+# df
+# Show disk space usage.
+# Common options:
+#   -h → Show sizes in human-readable format.
+df -h
+
+# free
+# Display memory usage.
+# Common options:
+#   -h → Show sizes in human-readable format.
+free -h
+
+# top
+# Show real-time system processes.
+top
+
+# ps
+# Display information about running processes.
+ps aux
+
+# uptime
+# Show how long the system has been running.
+uptime
+
+==================================================
+7. PACKAGE MANAGEMENT
+==================================================
+
+# apt update
+# Update the list of available packages.
+sudo apt update
+
+# apt upgrade
+# Upgrade all installed packages to the latest version.
+sudo apt upgrade
+
+# apt install
+# Install a package.
+# Example: Install "curl".
+sudo apt install curl
+
+# apt remove
+# Remove an installed package.
+# Example: Remove "curl".
+sudo apt remove curl
+
+# apt autoremove
+# Remove unused packages and dependencies.
+sudo apt autoremove
+
+# dpkg -i
+# Install a .deb package manually.
+# Example: Install "package.deb".
+sudo dpkg -i package.deb
+
+==================================================
+8. EDITING FILES WITH NANO
+==================================================
+
+# nano <filename>
+# Open or create a file in the Nano text editor.
+nano myfile.txt
+
+# Nano shortcuts (basic operations):
+#   Ctrl + O → Save the file.
+#   Ctrl + X → Exit Nano.
+#   Ctrl + K → Cut the current line.
+#   Ctrl + U → Paste the cut line.
+#   Ctrl + W → Search for text in the file.
+#   Ctrl + G → Show Nano's help menu.
+#   Ctrl + C → Show the current cursor position.
+
+# Enable line numbers in Nano:
+nano --linenumbers myfile.txt
+
+==================================================
+9. MISCELLANEOUS UTILITIES
+==================================================
+
+# clear
+# Clear the terminal screen.
+clear
+
+# echo
+# Print a message to the terminal.
+# Example: Print "Hello World".
+echo "Hello World"
+
+# date
+# Show the current date and time.
+date
+
+# history
+# Show the command history.
+history
+
+# exit
+# Exit the terminal session.
+exit
+
+==================================================
+10. BONUS COMMANDS FOR BEGINNERS
+==================================================
+
+# man <command>
+# Show the manual page for a command.
+# Example: Learn about "ls".
+man ls
+
+# alias
+# Create a shortcut for a command.
+# Example: Make "ll" an alias for "ls -l".
+alias ll="ls -l"
+
+# unalias
+# Remove an alias.
+unalias ll
+
+# tar
+# Create or extract tar archives.
+# Example: Extract "archive.tar".
+tar -xvf archive.tar
